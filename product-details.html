@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
@@ -8,7 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FLY | Template</title>
+
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+
+    <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -17,6 +23,7 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/feedback.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -149,13 +156,14 @@
                                     <li><a href="./my-blogs.html">My Blog</a></li>
                                 </ul>
                             </li>
-                            <li class="active" style="margin: 0 15px;"><a href="#">Product</a></li>
+                            <li class="active" style="margin: 0 15px;"><a href="./productPage.html">Product</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3" style="align-content: center;">
                     <div class="header__cart">
                         <ul>
+                            <!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> -->
                             <li><a href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -246,228 +254,108 @@
     </script>
     <!-- Hero Section End -->
 
-    <!-- Featured Section Begin -->
-    <section class="featured spad">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Product</h2>
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Product Detail</h2>
+                        <div class="breadcrumb__option">
+                            <a href="./HomePage.html">Home</a>
+                            <span>Product</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row featured__filter">
-                <!-- Products will be dynamically injected here -->
-            </div>
-            <div class="pagination"></div>
         </div>
     </section>
-    <!-- Featured Section End -->
+    <!-- Breadcrumb Section End -->
+
+    <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large" id="productImage" src="" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3 id="productName">Product Name</h3>
+                        <div class="product__details__rating" id="productRating">
+                            <!-- Rating will be generated here -->
+                        </div>
+                        <div class="product__details__price" id="productPrice">$0.00</div>
+                        <p id="productDescription">Product Description</p>
+                        <div class="product__details__quantity">
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                    <input type="text" value="1">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="primary-btn">ADD TO CART</a>
+                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <ul>
+                            <li><b>Availability</b> <span id="productAvailability">In Stock</span></li>
+                            <li><b>Weight</b> <span id="productWeight">0 kg</span></li>
+                            <li><b>Share on</b>
+                                <div class="share">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <script>
-        $(document).ready(function () {
-            var queryString = window.location.search;
-            var urlParams = new URLSearchParams(queryString);
-            var category = urlParams.get('category');
-            var name = urlParams.get('name');
-            console.log(category)
-            const productsPerPage = 8;
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var product = urlParams.get('product');
+        if (product) {
+            $.ajax({
+                url: `https://optical-empire-430402-i2.as.r.appspot.com/api/v1/products/name?productName=${product}`,
+                method: 'GET',
+                success: function (response) {
+                    var product = response[0];
 
-            if (category) {
-                $.ajax({
-                    url: `https://optical-empire-430402-i2.as.r.appspot.com/api/v1/products/category?categoryName=${category}`,
-                    method: 'GET',
-                    success: function (response) {
-                        var products = response;
-                        var totalPages = Math.ceil(products.length / productsPerPage);
+                    $('#productImage').attr('src', `img/product/milk-${product.productId}.jpg`);
+                    $('#productName').text(product.productName);
+                    $('#productPrice').text(`$${product.productPrice.toFixed(2)}`);
+                    $('#productDescription').text(product.productInfor);
+                    $('#productAvailability').text(product.productQuatity > 0 ? 'In Stock' : 'Out of Stock');
+                    $('#productWeight').text(`${product.productWeight} kg`);
 
-                        function renderProducts(page) {
-                            var start = (page - 1) * productsPerPage;
-                            var end = start + productsPerPage;
-                            var paginatedProducts = products.slice(start, end);
-
-                            var productHtml = '';
-
-                            paginatedProducts.forEach(function (product) {
-                                productHtml += `
-                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                                <div class="featured__item">
-                                    <div class="featured__item__pic set-bg" style="background-image: url(img/product/milk-${product.productId}.jpg);">
-                                        <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="featured__item__text">
-                                        <h4>${product.productCategory.productCategoryName}</h4>
-                                        <h6><a href="./product-details.html?product=${product.productName}">${product.productName}</a></h6>
-                                        <h5>$${product.productPrice.toFixed(2)}</h5>
-                                    </div>
-                                </div>
-                            </div>`;
-                            });
-
-                            $('.featured__filter').html(productHtml);
+                    var ratingHtml = '';
+                    var rating = product.productPrice || 0;
+                    for (var i = 1; i <= 5; i++) {
+                        if (i <= rating) {
+                            ratingHtml += '<i class="fa fa-star"></i>';
+                        } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+                            ratingHtml += '<i class="fa fa-star-half-o"></i>';
+                        } else {
+                            ratingHtml += '<i class="fa fa-star-o"></i>';
                         }
-
-                        function renderPagination() {
-                            var paginationHtml = '';
-
-                            for (var i = 1; i <= totalPages; i++) {
-                                paginationHtml += `<button class="page-btn owl-prev" data-page="${i}">${i}</button>`;
-                            }
-
-                            $('.pagination').html(paginationHtml);
-                        }
-
-                        $(document).on('click', '.page-btn', function () {
-                            var page = $(this).data('page');
-                            renderProducts(page);
-
-                            $('.page-btn').removeClass('active');
-                            $(this).addClass('active');
-                        });
-
-                        renderPagination();
-                        renderProducts(1);
-                        $('.pagination button:first').addClass('active');
-                    },
-                    error: function (error) {
-                        console.error('Error fetching data: ', error);
                     }
-                });
-            } else if (name) {
-                $.ajax({
-                    url: `https://optical-empire-430402-i2.as.r.appspot.com/api/v1/products/name?productName=${name}`,
-                    method: 'GET',
-                    success: function (response) {
-                        var products = response;
-                        var totalPages = Math.ceil(products.length / productsPerPage);
-
-                        function renderProducts(page) {
-                            var start = (page - 1) * productsPerPage;
-                            var end = start + productsPerPage;
-                            var paginatedProducts = products.slice(start, end);
-
-                            var productHtml = '';
-
-                            paginatedProducts.forEach(function (product) {
-                                productHtml += `
-                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                                <div class="featured__item">
-                                    <div class="featured__item__pic set-bg" style="background-image: url(img/product/milk-${product.productId}.jpg);">
-                                        <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="featured__item__text">
-                                        <h4>${product.productCategory.productCategoryName}</h4>
-                                        <h6><a href="./product-details.html?product=${product.productName}">${product.productName}</a></h6>
-                                        <h5>$${product.productPrice.toFixed(2)}</h5>
-                                    </div>
-                                </div>
-                            </div>`;
-                            });
-
-                            $('.featured__filter').html(productHtml);
-                        }
-
-                        function renderPagination() {
-                            var paginationHtml = '';
-
-                            for (var i = 1; i <= totalPages; i++) {
-                                paginationHtml += `<button class="page-btn owl-prev" data-page="${i}">${i}</button>`;
-                            }
-
-                            $('.pagination').html(paginationHtml);
-                        }
-
-                        $(document).on('click', '.page-btn', function () {
-                            var page = $(this).data('page');
-                            renderProducts(page);
-
-                            $('.page-btn').removeClass('active');
-                            $(this).addClass('active');
-                        });
-
-                        renderPagination();
-                        renderProducts(1);
-                        $('.pagination button:first').addClass('active');
-                    },
-                    error: function (error) {
-                        console.error('Error fetching data: ', error);
-                    }
-                });
-            } else {
-                $.ajax({
-                    url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/products',
-                    method: 'GET',
-                    success: function (response) {
-                        var products = response;
-                        var totalPages = Math.ceil(products.length / productsPerPage);
-
-                        function renderProducts(page) {
-                            var start = (page - 1) * productsPerPage;
-                            var end = start + productsPerPage;
-                            var paginatedProducts = products.slice(start, end);
-
-                            var productHtml = '';
-
-                            paginatedProducts.forEach(function (product) {
-                                productHtml += `
-                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                                <div class="featured__item">
-                                    <div class="featured__item__pic set-bg" style="background-image: url(img/product/milk-${product.productId}.jpg);">
-                                        <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="featured__item__text">
-                                        <h4>${product.productCategory.productCategoryName}</h4>
-                                        <h6><a href="./product-details.html?product=${product.productName}">${product.productName}</a></h6>
-                                        <h5>$${product.productPrice.toFixed(2)}</h5>
-                                    </div>
-                                </div>
-                            </div>`;
-                            });
-
-                            $('.featured__filter').html(productHtml);
-                        }
-
-                        function renderPagination() {
-                            var paginationHtml = '';
-
-                            for (var i = 1; i <= totalPages; i++) {
-                                paginationHtml += `<button class="page-btn owl-prev" data-page="${i}">${i}</button>`;
-                            }
-
-                            $('.pagination').html(paginationHtml);
-                        }
-
-                        $(document).on('click', '.page-btn', function () {
-                            var page = $(this).data('page');
-                            renderProducts(page);
-
-                            $('.page-btn').removeClass('active');
-                            $(this).addClass('active');
-                        });
-
-                        renderPagination();
-                        renderProducts(1);
-                        $('.pagination button:first').addClass('active');
-                    },
-                    error: function (error) {
-                        console.error('Error fetching data: ', error);
-                    }
-                });
-
-            }
-        });
+                    ratingHtml += `<span>(${product.productReviews} reviews)</span>`;
+                    $('#productRating').html(ratingHtml);
+                },
+                error: function (error) {
+                    console.error('Error fetching product data: ', error);
+                }
+            });
+        } else {
+            console.error("productId parameter is missing in the URL");
+        }
     </script>
+    <!-- Product Details Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer spad">
@@ -476,13 +364,12 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
-                                    src="img/logo.png" alt="" style="max-width: 50%;"></a>
+                            <a href="./HomePage.html"><img src="img/logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: Ho Chi Minh City</li>
+                            <li>Address: 60-49 Road 11378 New York</li>
                             <li>Phone: +65 11.188.888</li>
-                            <li>Email: FLY@gmail.com</li>
+                            <li>Email: hello@colorlib.com</li>
                         </ul>
                     </div>
                 </div>
@@ -516,9 +403,10 @@
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
                         <div class="footer__widget__social">
-                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
-                                    class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
                         </div>
                     </div>
                 </div>
@@ -526,9 +414,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">
-                        <!-- <div class="footer__copyright__text"><p> Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-   Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.</p></div> -->
+                        <div class="footer__copyright__text">
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                                template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
                         <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
                     </div>
                 </div>
@@ -538,6 +432,7 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
+    <script src="js/feedback.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
@@ -546,7 +441,6 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
 
 
 </body>
