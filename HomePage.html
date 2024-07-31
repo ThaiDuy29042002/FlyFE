@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -29,7 +30,8 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+            <a href="#" style="display: flex; justify-content: center;"><img src="img/logo.png" alt=""
+                    style="max-width: 50%;"></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -55,17 +57,17 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active" style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
-                            <!-- <li><a href="./shop-grid.html">Shop</a></li> -->
-                            <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
-                            <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
-                            <li style="margin: 0 15px;"><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown" >
-                                    <li><a href="./myProfile.html">My Profile</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./historybooking.html">History Booking</a></li>
-                                    <li><a href="./my-blogs.html">My Blog</a></li>
-                                </ul>
-                            </li>
+                <!-- <li><a href="./shop-grid.html">Shop</a></li> -->
+                <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
+                <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
+                <li style="margin: 0 15px;"><a href="#">Pages</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="./myProfile.html">My Profile</a></li>
+                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                        <li><a href="./historybooking.html">History Booking</a></li>
+                        <li><a href="./my-blogs.html">My Blog</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -78,7 +80,9 @@
         <div class="humberger__menu__contact">
             <ul>
                 <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
-                <a href="./registerShop.html"><li>Register Shop</li></a>           
+                <a href="./registerShop.html">
+                    <li>Register Shop</li>
+                </a>
             </ul>
         </div>
     </div>
@@ -93,14 +97,17 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
-                                <a href="./registerShop.html"><li>Register Shop</li></a>
+                                <a href="./registerShop.html">
+                                    <li>Register Shop</li>
+                                </a>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                <a href="https://www.facebook.com/profile.php?id=61559967236538"><i class="fa fa-facebook"></i></a>
+                                <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
+                                        class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
                             <div class="header__top__right__language">
@@ -124,7 +131,8 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./HomePage.html" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+                        <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
+                                src="img/logo.png" alt="" style="max-width: 50%;"></a>
                     </div>
                 </div>
                 <div class="col-lg-6" style="display: flex; justify-content: center;">
@@ -134,13 +142,14 @@
                             <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
                             <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
                             <li style="margin: 0 15px;"><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown" >
+                                <ul class="header__menu__dropdown">
                                     <li><a href="./myProfile.html">My Profile</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
                                     <li><a href="./historybooking.html">History Booking</a></li>
                                     <li><a href="./my-blogs.html">My Blog</a></li>
                                 </ul>
                             </li>
+                            <li style="margin: 0 15px;"><a href="./productPage.html">Product</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -170,22 +179,28 @@
                             <i class="fa fa-bars"></i>
                             <span>All Categories</span>
                         </div>
-                        <ul>
-                            <li><a href="#">Nutritional food</a></li>
-                            <li><a href="#">Healthcare product</a></li>
-                            <li><a href="#">Personal care products</a></li>
-                            <li><a href="#">Household appliances</a></li>
-                            <li><a href="#">Entertainment and spirit</a></li>
+                        <ul id="categories-container">
+                            <!-- Add Categories Here -->
+
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <input type="text" placeholder="What do yo u need?">
+                            <form id="searchForm" action="productPage.html">
+                                <input type="text" name="name" placeholder="What do you need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
+                            <script>
+                                document.getElementById('searchForm').addEventListener('submit', function(event) {
+                                    var searchInput = document.querySelector('input[name="name"]').value.trim();
+                                    if (!searchInput) {
+                                        event.preventDefault();
+                                        alert('Please enter a search term.');
+                                    }
+                                });
+                            </script>
                         </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
@@ -197,7 +212,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                    <div class="hero__item set-bg" data-setbg="img/banner/banner-1.jpg">
                         <div class="hero__text">
                             <span>Forever Lively Youth</span>
                             <h2>100%<br />quality products</h2>
@@ -209,43 +224,27 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/AllProductCategories",
+                method: "GET",
+                success: function (response) {
+                    var categoryHtml = '';
 
-    <!-- Categories Section Begin -->
-    <section class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="categories__slider owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                            <h5><a href="#">Nutritional food</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-2.jpg">
-                            <h5><a href="#">Healthcare product</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-3.jpg">
-                            <h5><a href="#">Personal care products</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-4.jpg">
-                            <h5><a href="#">Household appliances</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-5.jpg">
-                            <h5><a href="#">Entertainment and spirit</a></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Categories Section End -->
+                    response.forEach(function (category) {
+                        categoryHtml += `
+                        <li><a href="productPage.html?category=${category.productCategoryName}">${category.productCategoryName}</a></li>`;
+                    });
+                    $("#categories-container").html(categoryHtml);
+                },
+                error: function (error) {
+                    console.error('Error fetching blog data: ', error);
+                }
+            });
+        });
+    </script>
+    <!-- Hero Section End -->
 
     <!-- Featured Section Begin -->
     <section class="featured spad">
@@ -260,47 +259,79 @@
             <div class="row featured__filter">
                 <!-- Products will be dynamically injected here -->
             </div>
+            <div class="pagination"></div>
         </div>
     </section>
     <!-- Featured Section End -->
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+            const productsPerPage = 8;
+
             $.ajax({
-                url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/products?pageIndex=10&pageSize=1',
+                url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/products',
                 method: 'GET',
-                success: function(response) {
-                    console.log(response); // Inspect the response structure
-    
-                    // Adjust this part based on actual structure of the response
-                    var products = response; // Directly access the response if it is an array
-                    var productHtml = '';
-    
-                    products.forEach(function(product) {
-                        productHtml += `
-                            <div class="featured__item">
-                                <div class="featured__item__pic set-bg" style="background-image: url('${product.imageProduct}');">
-                                    <ul class="featured__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="featured__item__text">
-                                    <h4>${product.productCategory.productCategoryName}</h4>
-                                    <h6><a href="./shop-details.html?productId=${product.productId}">${product.productName}</a></h6>
-                                    <h5>${product.productPrice.toFixed(2)}Vnd</h5>
+                success: function (response) {
+                    var products = response;
+                    var totalPages = Math.ceil(products.length / productsPerPage);
+
+                    function renderProducts(page) {
+                        var start = (page - 1) * productsPerPage;
+                        var end = start + productsPerPage;
+                        var paginatedProducts = products.slice(start, end);
+
+                        var productHtml = '';
+
+                        paginatedProducts.forEach(function (product) {
+                            productHtml += `
+                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                <div class="featured__item">
+                                    <div class="featured__item__pic set-bg" style="background-image: url(img/product/milk-${product.productId}.jpg);">
+                                        <ul class="featured__item__pic__hover">
+                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="featured__item__text">
+                                        <h4>${product.productCategory.productCategoryName}</h4>
+                                        <h6><a href="./shop-details.html?productId=${product.productId}">${product.productName}</a></h6>
+                                        <h5>$${product.productPrice.toFixed(2)}</h5>
+                                    </div>
                                 </div>
                             </div>`;
+                        });
+
+                        $('.featured__filter').html(productHtml);
+                    }
+
+                    function renderPagination() {
+                        var paginationHtml = '';
+
+                        for (var i = 1; i <= totalPages; i++) {
+                            paginationHtml += `<button class="page-btn owl-prev" data-page="${i}">${i}</button>`;
+                        }
+
+                        $('.pagination').html(paginationHtml);
+                    }
+
+                    $(document).on('click', '.page-btn', function () {
+                        var page = $(this).data('page');
+                        renderProducts(page);
+
+                        $('.page-btn').removeClass('active');
+                        $(this).addClass('active');
                     });
-    
-                    $('.featured__filter').html(productHtml);
+
+                    renderPagination();
+                    renderProducts(1);
+                    $('.pagination button:first').addClass('active');
                 },
-                error: function(error) {
-                    console.log('Error fetching data: ', error);
+                error: function (error) {
+                    console.error('Error fetching data: ', error);
                 }
             });
         });
-        </script>
+    </script>
     <!-- Banner Begin -->
     <!-- <div class="banner">
         <div class="container">
@@ -335,7 +366,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -345,7 +376,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -355,7 +386,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -367,7 +398,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -377,7 +408,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -387,7 +418,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -406,7 +437,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -416,7 +447,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -426,7 +457,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -438,7 +469,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -448,7 +479,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -458,7 +489,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -477,7 +508,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -487,7 +518,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -497,7 +528,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -509,7 +540,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -519,7 +550,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -529,7 +560,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h5>Shop Name</h5>
-                                        <h6>Crab Pool Security</h6>
+                                        <h6>Milk Pool Security</h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
@@ -552,58 +583,46 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                                <li><i class="fa fa-user-o"></i> User Name</li>
-                            </ul>
-                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                                <li><i class="fa fa-user-o"></i> User Name</li>
-                            </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                                <li><i class="fa fa-user-o"></i> User Name</li>
-                            </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" id="blog-container">
+                <!-- Add Blog here -->
+
             </div>
         </div>
     </section>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/blogs",
+                method: "GET",
+                success: function (response) {
+                    var blogs = response;
+                    var blogHtml = '';
+                    response.forEach((blog) => {
+                        blogHtml += `
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="blog__item">
+                                <div class="blog__item__pic">
+                                    <img src="img/blog/blog-${blog.blogId}.jpg" alt="${blog.blogContent}">
+                                </div>
+                                <div class="blog__item__text">
+                                    <ul>
+                                        <li><i class="fa fa-calendar-o"></i> ${new Date(blog.blogDate).toLocaleDateString()}</li>
+                                        <li><i class="fa fa-user-o"></i> ${blog.account.email}</li>
+                                    </ul>
+                                    <h5><a href="#">${blog.blogName}</a></h5>
+                                    <p>${blog.blogContent}</p>
+                                </div>
+                            </div>
+                        </div>`;
+                        $("#blog-container").html(blogHtml);
+                    });
+                },
+                error: function (error) {
+                    console.error('Error fetching blog data: ', error);
+                }
+            });
+        });
+    </script>
     <!-- Blog Section End -->
 
     <!-- Footer Section Begin -->
@@ -613,7 +632,8 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
+                                    src="img/logo.png" alt="" style="max-width: 50%;"></a>
                         </div>
                         <ul>
                             <li>Address: Ho Chi Minh City</li>
@@ -652,7 +672,8 @@
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
                         <div class="footer__widget__social">
-                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
+                                    class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
