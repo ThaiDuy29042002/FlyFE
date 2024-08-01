@@ -202,7 +202,7 @@
 								<a href="modal" data-toggle="modal" data-target="#modal"></i></a>
 								<img src="img/logo.png" alt="" class="avatar-photo">
 							</div>
-							<h5 class="text-center h5 mb-0">Shop 1</h5>
+							<h5 class="text-center h5 mb-0" id="shop-name">Shop 1</h5>
 						</div>
 					</div>
 					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
@@ -218,29 +218,29 @@
 										<!-- Setting Tab start -->
 										<div class="tab-pane fade show active height-100-p" id="setting" role="tabpanel">
 											<div class="profile-setting">
-												<form>
+												<form id="edit-shop-form">
 													<ul class="profile-edit-list row">
 														<li class="weight-500 col-md-6">
 															<h4 class="text-blue h5 mb-20">Edit Shop Information</h4>
 															<div class="form-group">
 																<label>Shop Name</label>
-																<input class="form-control form-control-lg" type="text">
+																<input id="shop-name" class="form-control form-control-lg" type="text">
 															</div>
 															<div class="form-group">
 																<label>Title</label>
-																<input class="form-control form-control-lg" type="text">
+																<input id="shop-title" class="form-control form-control-lg" type="text">
 															</div>
 															<div class="form-group">
 																<label>Email</label>
-																<input class="form-control form-control-lg" type="email">
+																<input id="shop-email" class="form-control form-control-lg" type="email">
 															</div>
 															<div class="form-group">
 																<label>Address</label>
-																<textarea class="form-control"></textarea>
+																<textarea id="shop-address" class="form-control"></textarea>
 															</div>
 															<div class="form-group">
 																<label>Telephone</label>
-																<input class="form-control form-control-lg" type="text">
+																<input id="shop-telephone" class="form-control form-control-lg" type="text">
 															</div>
 															<div class="form-group mb-0">
 																<input type="submit" class="btn btn-primary" value="Update Information">
@@ -249,6 +249,60 @@
 													</ul>
 												</form>
 											</div>
+											<script>
+												$(document).ready(function() {
+													function getQueryParam(name) {
+														const urlParams = new URLSearchParams(window.location.search);
+														return urlParams.get(name);
+													}
+													var shopId = getQueryParam('shopId');
+											
+													if (shopId) {
+														$.ajax({
+															url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/shopAccount',
+															method: 'GET',
+															data: { shopId: shopId },
+															success: function(response) {
+																$('#shop-name').val(response.shopName);
+																$('#shop-title').val(response.shopDetail);
+																$('#shop-email').val(response.shopEmail);
+																$('#shop-address').val(response.shopAddress);
+																$('#shop-telephone').val(response.shopPhone);
+															},
+															error: function(error) {
+																console.log('Error fetching shop data: ', error);
+															}
+														});
+											
+														$('#edit-shop-form').submit(function(event) {
+															event.preventDefault(); 
+											
+															var updatedShopData = {
+																shopId: shopId,
+																shopName: $('#shop-name').val(),
+																shopDetail: $('#shop-title').val(),
+																shopAddress: $('#shop-address').val()
+															};
+											
+															$.ajax({
+																url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/UShopAccount',
+																method: 'PUT',
+																contentType: 'application/json',
+																data: JSON.stringify(updatedShopData),
+																success: function(response) {
+																	alert('Shop information updated successfully!');
+																},
+																error: function(error) {
+																	console.log('Error updating shop data: ', error);
+																}
+															});
+														});
+													} else {
+														alert('Shop ID not found in URL');
+													}
+
+												});
+												</script>
 										</div>
 									</div>
 								</div>

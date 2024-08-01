@@ -193,48 +193,63 @@
 									<th>Image Shop</th>
 									<th>Shop Name</th>
 									<th>Shop Information</th>
-                                    <th>Address</th>
+									<th>Address</th>
 									<th>Status</th>
 									<th class="datatable-nosort">Action</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="shop-table-body">
+								<!-- Shop data will be injected here -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+		</div>
+		<script>
+			$(document).ready(function() {
+				$.ajax({
+					url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/shop',
+					method: 'GET',
+					success: function(response) {
+						console.log(response); // Inspect the response structure
+		
+						// Assuming response is an array of shops
+						var shops = response;
+						var shopHtml = '';
+		
+						shops.forEach(function(shop) {
+							shopHtml += `
 								<tr>
-									<td class="table-plus">01</td>
+									<td class="table-plus">${shop.shopId}</td>
 									<td class="table-plus">
-										<img src="img/logo.png" width="70" height="70" alt="">
+										<img src="${shop.imageShop || 'img/logo.png'}" width="70" height="70" alt="">
 									</td>
-									<td>Shop 1</td>
-									<td>Shop Here</td>
-                                    <td>Ho Chi Minh City</td>
-									<td><input type="checkbox" name="status" @(item.Status ? "checked" : "") /></td>
-									
+									<td>${shop.shopName}</td>
+									<td>${shop.shopDetail}</td>
+									<td>${shop.shopAddress}</td>
+									<td><input type="checkbox" name="status" ${shop.status ? 'checked' : ''} /></td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<!-- <a class="dropdown-item" asp-page="./profileShop.html" asp-route-id=""><i class="dw dw-eye"></i> View</a> -->
-												<a class="dropdown-item" href="./profileShopAccount.html" asp-route-id=""><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" asp-page="./Delete" asp-route-id=""><i class="dw dw-delete-3"></i> Delete</a>
+												<a class="dropdown-item" href="./profileShopAccount.html?shopId=${shop.shopId}"><i class="dw dw-edit2"></i> Edit</a>
+												<a class="dropdown-item" href="./Delete?shopId=${shop.shopId}"><i class="dw dw-delete-3"></i> Delete</a>
 											</div>
 										</div>
 									</td>
-								</tr>
-								
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<!-- Simple Datatable End -->
-				<!-- multiple select row Datatable start -->
-				
-				<!-- multiple select row Datatable End -->
-				<!-- Checkbox select Datatable start -->
-				
-				
-		</div>
+								</tr>`;
+						});
+		
+						$('#shop-table-body').html(shopHtml);
+					},
+					error: function(error) {
+						console.log('Error fetching data: ', error);
+					}
+				});
+			});
+			</script>
 	</div>
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>

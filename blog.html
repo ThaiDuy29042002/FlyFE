@@ -11,8 +11,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
@@ -25,7 +24,6 @@
     <link rel="stylesheet" href="css/feedback.css" type="text/css">
 
 </head>
-
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -36,7 +34,8 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+            <a href="#" style="display: flex; justify-content: center;"><img src="img/logo.png" alt=""
+                    style="max-width: 50%;"></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -62,17 +61,17 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active" style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
-                            <!-- <li><a href="./shop-grid.html">Shop</a></li> -->
-                            <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
-                            <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
-                            <li style="margin: 0 15px;"><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown" >
-                                    <li><a href="./myProfile.html">My Profile</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./historybooking.html">History Booking</a></li>
-                                    <li><a href="./my-blogs.html">My Blog</a></li>
-                                </ul>
-                            </li>
+                <!-- <li><a href="./shop-grid.html">Shop</a></li> -->
+                <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
+                <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
+                <li style="margin: 0 15px;"><a href="#">Pages</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="./myProfile.html">My Profile</a></li>
+                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                        <li><a href="./historybooking.html">History Booking</a></li>
+                        <li><a href="./my-blogs.html">My Blog</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -83,9 +82,8 @@
             <a href="#"><i class="fa fa-pinterest-p"></i></a>
         </div>
         <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
-                <a href="./registerShop.html"><li>Register Shop</li></a>           
+            <ul  id="auth-registerShop-section">
+
             </ul>
         </div>
     </div>
@@ -98,17 +96,17 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
-                                <a href="./registerShop.html"><li>Register Shop</li></a>           
+                            <ul id="auth-registershop-section">
+                                
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                <a href="https://www.facebook.com/profile.php?id=61559967236538"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
+                                        class="fa fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/forever_lively_youth"><i class="fa fa-instagram"></i></a>
                             </div>
                             <div class="header__top__right__language">
                                 <img src="img/language.png" alt="">
@@ -119,8 +117,59 @@
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="./loginPage.html"><i class="fa fa-user"></i> Login</a>
+                            <div class="header__top__right__auth" id="auth-section">
+                                <script>
+                                    $(document).ready(function () {
+                                        function getCookie(name) {
+                                            var nameEQ = name + "=";
+                                            var ca = document.cookie.split(';');
+                                            for (var i = 0; i < ca.length; i++) {
+                                                var c = ca[i];
+                                                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                                                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                                            }
+                                            return null;
+                                        }
+
+                                        function eraseCookie(name) {
+                                            document.cookie = name + '=; Max-Age=-99999999;';
+                                        }
+
+                                        var accessToken = getCookie('accessToken');
+
+                                        if (accessToken) {
+                                            $('#auth-section').html('<a href="#" id="logout-link"><i class="fa fa-user"></i> Logout</a>');
+                                            $('#auth-section-page').html(`
+                                               <a href="#">Pages</a>
+                                                    <ul class="header__menu__dropdown">
+                                                        <li><a href="./myProfile.html">My Profile</a></li>
+                                                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                                        <li><a href="./historybooking.html">History Booking</a></li>
+                                                        <li><a href="./my-blogs.html">My Blog</a></li>
+                                                    </ul>
+                                            `);
+                                            $('#auth-registershop-section').html(`
+                                                <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
+                                                <a href="./registerShop.html">
+                                                <li>Register Shop</li>
+                                                </a>
+                                            `);
+                                        } else {
+                                            $('#auth-section').html('<a href="./loginPage.html"><i class="fa fa-user"></i> Login</a>');
+                                            $('#auth-registershop-section').html(`
+                                                <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
+                                            `);
+                                        }
+
+                                        // Handle logout
+                                        $(document).on('click', '#logout-link', function (e) {
+                                            e.preventDefault();
+                                            eraseCookie('accessToken');
+                                            eraseCookie('refreshToken');
+                                            window.location.href = 'loginPage.html';
+                                        });
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -131,7 +180,8 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./HomePage.html" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+                        <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
+                                src="img/logo.png" alt="" style="max-width: 50%;"></a>
                     </div>
                 </div>
                 <div class="col-lg-6" style="display: flex; justify-content: center;">
@@ -140,22 +190,14 @@
                             <li style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
                             <li class="active" style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
                             <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
-                            <li style="margin: 0 15px;"><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./myProfile.html">My Profile</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./historybooking.html">History Booking</a></li>
-                                    <li><a href="./my-blogs.html">My Blog</a></li>
-                                </ul>
-                            </li>
                             <li style="margin: 0 15px;"><a href="./productPage.html">Product</a></li>
+                            <li style="margin: 0 15px;" id="auth-section-page"></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3" style="align-content: center;">
-                    <div class="header__cart" >
+                    <div class="header__cart">
                         <ul>
-                            <!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> -->
                             <li><a href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -179,29 +221,55 @@
                             <i class="fa fa-bars"></i>
                             <span>All Categories</span>
                         </div>
-                        <ul>
-                            <li><a href="#">Nutritional food</a></li>
-                            <li><a href="#">Healthcare product</a></li>
-                            <li><a href="#">Personal care products</a></li>
-                            <li><a href="#">Household appliances</a></li>
-                            <li><a href="#">Entertainment and spirit</a></li>
+                        <ul id="categories-container">
+                            <!-- Add Categories Here -->
+
                         </ul>
                     </div>
                 </div>
+                <script>
+                    $(document).ready(function () {
+                        $.ajax({
+                            url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/AllProductCategories",
+                            method: "GET",
+                            success: function (response) {
+                                var categoryHtml = '';
+            
+                                response.forEach(function (category) {
+                                    categoryHtml += `
+                                    <li><a href="productPage.html?category=${category.productCategoryName}">${category.productCategoryName}</a></li>`;
+                                });
+                                $("#categories-container").html(categoryHtml);
+                            },
+                            error: function (error) {
+                                console.error('Error fetching blog data: ', error);
+                            }
+                        });
+                    });
+                </script>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <input type="text" placeholder="What do yo u need?">
+                            <form id="searchForm" action="productPage.html">
+                                <input type="text" name="name" placeholder="What do you need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
+                            <script>
+                                document.getElementById('searchForm').addEventListener('submit', function (event) {
+                                    var searchInput = document.querySelector('input[name="name"]').value.trim();
+                                    if (!searchInput) {
+                                        event.preventDefault();
+                                        alert('Please enter a search term.');
+                                    }
+                                });
+                            </script>
                         </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>+082448677</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>
@@ -210,7 +278,6 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
@@ -220,7 +287,7 @@
                     <div class="breadcrumb__text">
                         <h2>Blog</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                            <a href="./homePage.html">Home</a>
                             <span>Blog</span>
                         </div>
                     </div>
@@ -231,198 +298,58 @@
     <!-- Breadcrumb Section End -->
 
     <!-- Blog Section Begin -->
-    <section class="blog spad">
+    <section class="from-blog spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-5">
-                    <div class="blog__sidebar">
-                        <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Categories</h4>
-                            <ul>
-                                <li><a href="#">All</a></li>
-                                <li><a href="#">Health Care (20)</a></li>
-                                <li><a href="#">Food (5)</a></li>
-                                <li><a href="#">Life Style (9)</a></li>
-                                <li><a href="#">Travel (10)</a></li>
-                            </ul>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Recent News</h4>
-                            <div class="blog__sidebar__recent">
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-1.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>09 Kinds Of Vegetables<br /> Protect The Liver</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-2.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Tips You To Balance<br /> Nutrition Meal Day</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-3.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>4 Principles Help You Lose <br />Weight With Vegetables</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- <div class="blog__sidebar__item">
-                            <h4>Search By</h4>
-                            <div class="blog__sidebar__item__tags">
-                                <a href="#">Apple</a>
-                                <a href="#">Beauty</a>
-                                <a href="#">Vegetables</a>
-                                <a href="#">Fruit</a>
-                                <a href="#">Healthy Food</a>
-                                <a href="#">Lifestyle</a>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-7">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-2.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                        <li><i class="fa fa-user-o"></i> User Name</li>
-                                    </ul>
-                                    <h5><a href="./blog-details.html">6 ways to prepare breakfast for 30</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="./blog-details.html" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-3.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                        <li><i class="fa fa-user-o"></i> User Name</li>
-                                    </ul>
-                                    <h5><a href="./blog-details.html">Visit the clean farm in the US</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="./blog-details.html" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-1.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                        <li><i class="fa fa-user-o"></i> User Name</li>
-                                    </ul>
-                                    <h5><a href="./blog-details.html">Cooking tips make cooking simple</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="./blog-details.html" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-4.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                        <li><i class="fa fa-user-o"></i> User Name</li>
-                                    </ul>
-                                    <h5><a href="./blog-details.html">Cooking tips make cooking simple</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="./blog-details.html" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-4.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                        <li><i class="fa fa-user-o"></i> User Name</li>
-                                    </ul>
-                                    <h5><a href="./blog-details.html">The Moment You Need To Remove Garlic From The Menu</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="./blog-details.html" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-6.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                        <li><i class="fa fa-user-o"></i> User Name</li>
-                                    </ul>
-                                    <h5><a href="./blog-details.html">Cooking tips make cooking simple</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="./blog-details.html" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="product__pagination blog__pagination">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                            </div>
-                        </div>
+                <div class="col-lg-12">
+                    <div class="section-title from-blog__title">
+                        <h2>From The Blog</h2>
                     </div>
                 </div>
             </div>
+            <div class="row" id="blog-container">
+                <!-- Add Blog here -->
+
+            </div>
         </div>
     </section>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/blogs",
+                method: "GET",
+                success: function (response) {
+                    var blogs = response;
+                    var blogHtml = '';
+                    response.forEach((blog) => {
+                        blogHtml += `
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="blog__item">
+                                <div class="blog__item__pic">
+                                    <img src="img/blog/blog-${blog.blogId}.jpg" alt="${blog.blogContent}">
+                                </div>
+                                <div class="blog__item__text">
+                                    <ul>
+                                        <li><i class="fa fa-calendar-o"></i> ${new Date(blog.blogDate).toLocaleDateString()}</li>
+                                        <li><i class="fa fa-user-o"></i> ${blog.account.email}</li>
+                                    </ul>
+                                    <h5><a href="#">${blog.blogName}</a></h5>
+                                    <p>${blog.blogContent}</p>
+                                    <a href="./blog-details.html?blogId=${blog.blogId}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+                                </div>
+                            </div>
+                        </div>`;
+                        $("#blog-container").html(blogHtml);
+                    });
+                },
+                error: function (error) {
+                    console.error('Error fetching blog data: ', error);
+                }
+            });
+        });
+    </script>
     <!-- Blog Section End -->
 
-    <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
             <div class="row">
@@ -433,7 +360,7 @@
                         </div>
                         <ul>
                             <li>Address: Ho Chi Minh City</li>
-                            <li>Phone: +65 11.188.888</li>
+                            <li>Phone: +0862448677</li>
                             <li>Email: FLY@gmail.com</li>
                         </ul>
                     </div>
@@ -469,7 +396,7 @@
                         </form>
                         <div class="footer__widget__social">
                             <a href="https://www.facebook.com/profile.php?id=61559967236538"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/forever_lively_youth"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
