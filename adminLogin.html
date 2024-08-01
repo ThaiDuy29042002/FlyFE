@@ -34,7 +34,7 @@
             <div class="col-md-8 col-xs-12 col-sm-12 login_form">
                 <div class="container-fluid">
                     <div class="row">
-                        <h2>Login</h2>
+                        <h2>Admin Login</h2>
                     </div>
                     <div class="row">
                         <form id="loginForm" class="form-group">
@@ -55,9 +55,16 @@
                                 <input type="submit" value="Submit" class="btn">
                             </div>
                         </form>
-                    </div>
-                    <div class="row">
-                        <p>Don't have an account? <a href="./registerAccount.html">Register Here</a></p>
+                        <form id="identificationForm" style="display: none;" class="form-group">
+                            <div class="row">
+                                <input type="password" name="identificationCode" id="identificationCode" class="form__input"
+                                    placeholder="Code Identificatioin">
+                                <span id="codeError" class="error"></span>
+                            </div>
+                            <div class="row">
+                                <input type="submit" value="Submit" class="btn">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -102,16 +109,9 @@
                             password: password
                         }),
                         success: function (response) {
-                            setCookie('accessToken', response.accessToken, 7);
-                            setCookie('refreshToken', response.refreshToken, 7);
-
-                            const decodeJwt = jwt_decode(response.accessToken);
-                            const role = decodeJwt.role;
-                            if (role === '2' || role === '3') {
-                                window.location.href = "./HomePage.html";
-                            } else {
-                                alert('Xác thực thất bại. Vui lòng kiểm tra lại tài khoản.');
-                            }
+                            console.log(response.message);
+                            $('#loginForm').hide();
+                            $('#identificationForm').show();
                         },
                         error: function (xhr, status, error) {
                             alert('Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.');
@@ -119,6 +119,45 @@
                         }
                     });
                 }
+            });
+
+            $('#identificationForm').on('submit', function (event) {
+                event.preventDefault();
+
+                $('#codeError').text('');
+
+                const identificationCode = $('#identificationCode').val();
+                if (!identificationCode) {
+                    $('#codeError').text('Code không được để trống.');
+                    return;
+                }
+                console.log(`${$('#email').val()}`);
+                $.ajax({
+                    url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/auth/verify',
+                    type: 'POST',
+                    contentType: 'application/json-patch+json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        email: $('#email').val(),
+                        password: $('#password').val(),
+                        code: identificationCode
+                    }),
+                    success: function (response) {
+                        setCookie('accessToken', response.accessToken, 7);
+                        setCookie('refreshToken', response.refreshToken, 7);
+
+                        const decodeJwt = jwt_decode(response.accessToken);
+                        const role = decodeJwt.role;
+                        if(role === '1') {
+                            window.location.href = "./adminHomePage.html";
+                        } else {
+                            alert('Xác thực thất bại. Vui lòng kiểm tra lại tài khoản.');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        window.location.href = "./error.html"
+                    }
+                });
             });
         });
 
