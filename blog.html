@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/feedback.css" type="text/css">
 
 </head>
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -39,10 +40,8 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -82,7 +81,7 @@
             <a href="#"><i class="fa fa-pinterest-p"></i></a>
         </div>
         <div class="humberger__menu__contact">
-            <ul  id="auth-registerShop-section">
+            <ul id="auth-registerShop-section">
 
             </ul>
         </div>
@@ -97,7 +96,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul id="auth-registershop-section">
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -106,7 +105,8 @@
                             <div class="header__top__right__social">
                                 <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
                                         class="fa fa-facebook"></i></a>
-                                <a href="https://www.instagram.com/forever_lively_youth"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.instagram.com/forever_lively_youth"><i
+                                        class="fa fa-instagram"></i></a>
                             </div>
                             <div class="header__top__right__language">
                                 <img src="img/language.png" alt="">
@@ -200,7 +200,6 @@
                         <ul>
                             <li><a href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
                 </div>
             </div>
@@ -234,7 +233,7 @@
                             method: "GET",
                             success: function (response) {
                                 var categoryHtml = '';
-            
+
                                 response.forEach(function (category) {
                                     categoryHtml += `
                                     <li><a href="productPage.html?category=${category.productCategoryName}">${category.productCategoryName}</a></li>`;
@@ -307,22 +306,45 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="blog__sidebar">
+                    <div class="blog__sidebar__search">
+                        <form id="searchBlogForm">
+                            <input type="text" id="searchBlogInput" placeholder="Search...">
+                            <button type="submit"><span class="fa fa-search icon_search"></span></button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
             <div class="row" id="blog-container">
                 <!-- Add Blog here -->
 
             </div>
         </div>
     </section>
+
     <script>
         $(document).ready(function () {
-            $.ajax({
-                url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/blogs",
-                method: "GET",
-                success: function (response) {
-                    var blogs = response;
-                    var blogHtml = '';
-                    response.forEach((blog) => {
-                        blogHtml += `
+            
+            function fetchBlogs(apiUrl, callback) {
+                $.ajax({
+                    url: apiUrl,
+                    method: 'GET',
+                    success: function (response) {
+                        console.log('API response:', response); 
+                        callback(response);
+                    },
+                    error: function (error) {
+                        console.error('Error fetching blog data: ', error);
+                    }
+                });
+            }
+    
+            function displayBlogs(blogs) {
+                var blogHtml = '';
+                blogs.forEach((blog) => {
+                    blogHtml += `
                         <div class="col-lg-4 col-md-4 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
@@ -334,17 +356,37 @@
                                         <li><i class="fa fa-user-o"></i> ${blog.account.email}</li>
                                     </ul>
                                     <h5><a href="#">${blog.blogName}</a></h5>
-                                    <p>${blog.blogContent}</p>
                                     <a href="./blog-details.html?blogId=${blog.blogId}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>`;
-                        $("#blog-container").html(blogHtml);
-                    });
-                },
-                error: function (error) {
-                    console.error('Error fetching blog data: ', error);
+                });
+                $("#blog-container").html(blogHtml);
+            }
+    
+            var allBlogsUrl = "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/blogs";
+            fetchBlogs(allBlogsUrl, function (blogs) {
+                displayBlogs(blogs);
+            });
+    
+            $('#searchBlogForm').on('submit', function (e) {
+                e.preventDefault();
+    
+                var query = $('#searchBlogInput').val().trim();
+                if (!query) {
+                    alert('Please enter a search term.');
+                    return;
                 }
+    
+                var searchUrl = `https://optical-empire-430402-i2.as.r.appspot.com/api/v1/blogs/blogName?blogName=${query}`;
+                fetchBlogs(searchUrl, function (results) {
+                    console.log('Search results:', results); 
+                    if (results.length === 0) {
+                        $("#blog-container").html('<p>No blogs found.</p>');
+                    } else {
+                        displayBlogs(results);
+                    }
+                });
             });
         });
     </script>
@@ -356,7 +398,8 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
+                                    src="img/logo.png" alt="" style="max-width: 50%;"></a>
                         </div>
                         <ul>
                             <li>Address: Ho Chi Minh City</li>
@@ -395,7 +438,8 @@
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
                         <div class="footer__widget__social">
-                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
+                                    class="fa fa-facebook"></i></a>
                             <a href="https://www.instagram.com/forever_lively_youth"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>

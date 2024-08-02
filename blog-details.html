@@ -39,10 +39,8 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -200,7 +198,6 @@
                         <ul>
                             <li><a href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
                 </div>
             </div>
@@ -294,71 +291,69 @@
     <!-- Blog Details Hero End -->
 
     <!-- Blog Details Section Begin -->
-    <section class="blog-details spad">
+     <section class="blog-details spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-5 order-md-1 order-2">
-                    <div class="blog__sidebar">
-                        <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
-                    </div>
+                <div class="col-lg-8 col-md-7 order-md-1 order-1" id="blog-details-container">
+                    <!-- Blog details will be inserted here dynamically -->
                 </div>
-                <div class="col-lg-8 col-md-7 order-md-1 order-1">
-                    <div class="blog__details__text">
-                        <img id="blog-image" src="img/blog/details/details-pic.jpg" alt="">
-                        <span id="blog-date" class="fa fa-calendar-o"></span>
-                        <h3 id="blog-name"></h3>
-                        <p id="blog-content"></p>
-                    </div>
-                    <div class="blog__details__content">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="blog__details__author">
-                                    <div class="blog__details__author__pic">
-                                        <img id="author-image" src="img/blog/details/details-author.jpg" alt="">
-                                    </div>
-                                    <div class="blog__details__author__text">
-                                        <h6 id="author-name">Michael Scofield</h6>
-                                        <span id="author-role">Admin</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="blog__details__widget">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
             
-                <script>
+            <script>
                 $(document).ready(function() {
-                    // Function to get query parameter by name
                     function getQueryParam(name) {
                         const urlParams = new URLSearchParams(window.location.search);
                         return urlParams.get(name);
                     }
             
-                    var blogId = getQueryParam('blogId'); // Get blogId from URL
+                    var blogId = getQueryParam('blogId'); 
             
                     if (blogId) {
-                        // Fetch blog details
                         $.ajax({
                             url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/blogs/' + blogId,
                             method: 'GET',
                             success: function(response) {
-                                // Assuming response is an object with blog details
-                                $('#blog-image').attr('src', response.imageBlog || 'img/blog/details/details-pic.jpg');
-                                $('#blog-name').text(response.blogName);
-                                $('#blog-content').text(response.blogContent);
-                                $('#author-image').attr('src', response.authorImage || 'img/blog/details/details-author.jpg');
-                                $('#author-name').text(response.email);
-                                $('blog-dat0e').text(response.blogDate);
+                                var blogHtml = `
+                                    <div class="blog__details__text">
+                                        <img src="img/blog/blog-${response.blogId}.jpg" alt="" style="width:100%; height:auto;">
+                                        <span class="fa fa-calendar-o"> ${new Date(response.blogDate).toLocaleDateString()}</span>
+                                        <h3>${response.blogName}</h3>
+                                        <p>${response.blogContent}</p>
+                                    </div>
+                                    <div class="blog__details__content">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="blog__details__author">
+                                                    <div class="blog__details__author__pic">
+                                                        <img src="${response.authorImage || 'img/blog/details/details-author.jpg'}" alt="">
+                                                    </div>
+                                                    <div class="blog__details__author__text">
+                                                        <h6 id="author-name">${response.email}</h6>
+                                                        <span id="author-role">Admin</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="blog__details__widget">
+                                                    <!-- Additional widget content can go here -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`;
+            
+                                $('#blog-details-container').html(blogHtml);
+            
+                                $.ajax({
+                                    url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/user/'+response.accountId+'?accountId=' + response.accountId,
+                                    method: 'GET',
+                                    success: function(userResponse) {
+                                        $('#author-name').text(userResponse.userName || response.email);
+                                        $('#author-role').text(userResponse.address || 'Admin');
+                                    },
+                                    error: function(userError) {
+                                        console.log('Error fetching user data: ', userError);
+                                    }
+                                });
                             },
                             error: function(error) {
                                 console.log('Error fetching blog data: ', error);
@@ -368,75 +363,10 @@
                         alert('Blog ID not found in URL');
                     }
                 });
-                </script>
-            </div>
+            </script>
         </div>
     </section>
     <!-- Blog Details Section End -->
-
-    <!-- Related Blog Section Begin -->
-    <section class="related-blog spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title related-blog-title">
-                        <h2>Post You May Like</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                                <li><i class="fa fa-user-o"></i> User Name</li>
-                            </ul>
-                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                                <li><i class="fa fa-user-o"></i> User Name</li>
-                            </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                                <li><i class="fa fa-user-o"></i> User Name</li>
-                            </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Related Blog Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer spad">

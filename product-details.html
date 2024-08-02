@@ -1,146 +1,148 @@
 <!DOCTYPE html>
 <html lang="zxx">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Ogani Template">
-        <meta name="keywords" content="Ogani, unica, creative, html">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>FLY | Template</title>
-    
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- Css Styles -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="css/style.css" type="text/css">
-        <link rel="stylesheet" href="css/feedback.css" type="text/css">
-    
-    </head>
-    
-    <body>
-        <!-- Page Preloder -->
-        <div id="preloder">
-            <div class="loader"></div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FLY | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/feedback.css" type="text/css">
+
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="#" style="display: flex; justify-content: center;"><img src="img/logo.png" alt=""
+                    style="max-width: 50%;"></a>
         </div>
-    
-        <!-- Humberger Begin -->
-        <div class="humberger__menu__overlay"></div>
-        <div class="humberger__menu__wrapper">
-            <div class="humberger__menu__logo">
-                <a href="#" style="display: flex; justify-content: center;"><img src="img/logo.png" alt=""
-                        style="max-width: 50%;"></a>
-            </div>
-            <div class="humberger__menu__cart">
+        <div class="humberger__menu__cart">
+            <ul>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            </ul>
+        </div>
+        <div class="humberger__menu__widget">
+            <div class="header__top__right__language">
+                <img src="img/language.png" alt="">
+                <div>English</div>
+                <span class="arrow_carrot-down"></span>
                 <ul>
-                    <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                    <li><a href="#">Viet Nam</a></li>
+                    <li><a href="#">English</a></li>
                 </ul>
-                <div class="header__cart__price">item: <span>$150.00</span></div>
             </div>
-            <div class="humberger__menu__widget">
-                <div class="header__top__right__language">
-                    <img src="img/language.png" alt="">
-                    <div>English</div>
-                    <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li><a href="#">Viet Nam</a></li>
-                        <li><a href="#">English</a></li>
+            <div class="header__top__right__auth">
+                <a href="#"><i class="fa fa-user"></i> Login</a>
+            </div>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active" style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
+                <!-- <li><a href="./shop-grid.html">Shop</a></li> -->
+                <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
+                <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
+                <li style="margin: 0 15px;"><a href="#">Pages</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="./myProfile.html">My Profile</a></li>
+                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                        <li><a href="./historybooking.html">History Booking</a></li>
+                        <li><a href="./my-blogs.html">My Blog</a></li>
                     </ul>
-                </div>
-                <div class="header__top__right__auth">
-                    <a href="#"><i class="fa fa-user"></i> Login</a>
-                </div>
-            </div>
-            <nav class="humberger__menu__nav mobile-menu">
-                <ul>
-                    <li class="active" style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
-                    <!-- <li><a href="./shop-grid.html">Shop</a></li> -->
-                    <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
-                    <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
-                    <li style="margin: 0 15px;"><a href="#">Pages</a>
-                        <ul class="header__menu__dropdown">
-                            <li><a href="./myProfile.html">My Profile</a></li>
-                            <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                            <li><a href="./historybooking.html">History Booking</a></li>
-                            <li><a href="./my-blogs.html">My Blog</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <div id="mobile-menu-wrap"></div>
-            <div class="header__top__right__social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-            </div>
-            <div class="humberger__menu__contact">
-                <ul id="auth-registerShop-section">
-    
-                </ul>
-            </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a>
         </div>
-        <!-- Humberger End -->
-    
-        <!-- Header Section Begin -->
-        <header class="header">
-            <div class="header__top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="header__top__left">
-                                <ul id="auth-registershop-section">
-    
+        <div class="humberger__menu__contact">
+            <ul id="auth-registerShop-section">
+
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul id="auth-registershop-section">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
+                                        class="fa fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/forever_lively_youth"><i
+                                        class="fa fa-instagram"></i></a>
+                            </div>
+                            <div class="header__top__right__language">
+                                <img src="img/language.png" alt="">
+                                <div>English</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li><a href="#">Viet Nam</a></li>
+                                    <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="header__top__right">
-                                <div class="header__top__right__social">
-                                    <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
-                                            class="fa fa-facebook"></i></a>
-                                    <a href="https://www.instagram.com/forever_lively_youth"><i
-                                            class="fa fa-instagram"></i></a>
-                                </div>
-                                <div class="header__top__right__language">
-                                    <img src="img/language.png" alt="">
-                                    <div>English</div>
-                                    <span class="arrow_carrot-down"></span>
-                                    <ul>
-                                        <li><a href="#">Viet Nam</a></li>
-                                        <li><a href="#">English</a></li>
-                                    </ul>
-                                </div>
-                                <div class="header__top__right__auth" id="auth-section">
-                                    <script>
-                                        $(document).ready(function () {
-                                            function getCookie(name) {
-                                                var nameEQ = name + "=";
-                                                var ca = document.cookie.split(';');
-                                                for (var i = 0; i < ca.length; i++) {
-                                                    var c = ca[i];
-                                                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                                                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-                                                }
-                                                return null;
+                            <div class="header__top__right__auth" id="auth-section">
+                                <script>
+                                    $(document).ready(function () {
+                                        function getCookie(name) {
+                                            var nameEQ = name + "=";
+                                            var ca = document.cookie.split(';');
+                                            for (var i = 0; i < ca.length; i++) {
+                                                var c = ca[i];
+                                                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                                                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
                                             }
-    
-                                            function eraseCookie(name) {
-                                                document.cookie = name + '=; Max-Age=-99999999;';
-                                            }
-    
-                                            var accessToken = getCookie('accessToken');
-    
-                                            if (accessToken) {
-                                                $('#auth-section').html('<a href="#" id="logout-link"><i class="fa fa-user"></i> Logout</a>');
-                                                $('#auth-section-page').html(`
+                                            return null;
+                                        }
+
+                                        function eraseCookie(name) {
+                                            document.cookie = name + '=; Max-Age=-99999999;';
+                                        }
+
+                                        var accessToken = getCookie('accessToken');
+
+                                        if (accessToken) {
+                                            $('#auth-section').html('<a href="#" id="logout-link"><i class="fa fa-user"></i> Logout</a>');
+                                            $('#auth-section-page').html(`
                                                    <a href="#">Pages</a>
                                                         <ul class="header__menu__dropdown">
                                                             <li><a href="./myProfile.html">My Profile</a></li>
@@ -149,174 +151,181 @@
                                                             <li><a href="./my-blogs.html">My Blog</a></li>
                                                         </ul>
                                                 `);
-                                                $('#auth-registershop-section').html(`
+                                            $('#auth-registershop-section').html(`
                                                     <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
                                                     <a href="./registerShop.html">
                                                     <li>Register Shop</li>
                                                     </a>
                                                 `);
-                                            } else {
-                                                $('#auth-section').html('<a href="./loginPage.html"><i class="fa fa-user"></i> Login</a>');
-                                                $('#auth-registershop-section').html(`
+                                            document.getElementById('sendMessageBtn').style.display = 'inline-block';
+                                            document.getElementById('loginBtn').style.display = 'none';
+                                            $('#addToCartBtn').show();
+                                            $('#loginBtna').hide();
+                                        } else {
+                                            $('#auth-section').html('<a href="./loginPage.html"><i class="fa fa-user"></i> Login</a>');
+                                            $('#auth-registershop-section').html(`
                                                     <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
                                                 `);
-                                            }
-    
-                                            // Handle logout
-                                            $(document).on('click', '#logout-link', function (e) {
-                                                e.preventDefault();
-                                                eraseCookie('accessToken');
-                                                eraseCookie('refreshToken');
-                                                window.location.href = 'loginPage.html';
-                                            });
-                                        });
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="header__logo">
-                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
-                                    src="img/logo.png" alt="" style="max-width: 50%;"></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6" style="display: flex; justify-content: center;">
-                        <nav class="header__menu">
-                            <ul style="list-style: none; padding: 0; margin: 0; display: flex;">
-                                <li style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
-                                <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
-                                <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
-                                <li class="active" style="margin: 0 15px;"><a href="./productPage.html">Product</a></li>
-                                <li style="margin: 0 15px;" id="auth-section-page"></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-lg-3" style="align-content: center;">
-                        <div class="header__cart">
-                            <ul>
-                                <li><a href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                            </ul>
-                            <div class="header__cart__price">item: <span>$150.00</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="humberger__open">
-                    <i class="fa fa-bars"></i>
-                </div>
-            </div>
-        </header>
-        <!-- Header Section End -->
-    
-        <!-- Hero Section Begin -->
-        <section class="hero">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="hero__categories">
-                            <div class="hero__categories__all">
-                                <i class="fa fa-bars"></i>
-                                <span>All Categories</span>
-                            </div>
-                            <ul id="categories-container">
-                                <!-- Add Categories Here -->
-    
-                            </ul>
-                        </div>
-                    </div>
-                    <script>
-                        $(document).ready(function () {
-                            $.ajax({
-                                url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/AllProductCategories",
-                                method: "GET",
-                                success: function (response) {
-                                    var categoryHtml = '';
-    
-                                    response.forEach(function (category) {
-                                        categoryHtml += `
-                                        <li><a href="productPage.html?category=${category.productCategoryName}">${category.productCategoryName}</a></li>`;
-                                    });
-                                    $("#categories-container").html(categoryHtml);
-                                },
-                                error: function (error) {
-                                    console.error('Error fetching blog data: ', error);
-                                }
-                            });
-                        });
-                    </script>
-                    <div class="col-lg-9">
-                        <div class="hero__search">
-                            <div class="hero__search__form">
-                                <form id="searchForm" action="productPage.html">
-                                    <input type="text" name="name" placeholder="What do you need?">
-                                    <button type="submit" class="site-btn">SEARCH</button>
-                                </form>
-                                <script>
-                                    document.getElementById('searchForm').addEventListener('submit', function (event) {
-                                        var searchInput = document.querySelector('input[name="name"]').value.trim();
-                                        if (!searchInput) {
-                                            event.preventDefault();
-                                            alert('Please enter a search term.');
+                                            document.getElementById('sendMessageBtn').style.display = 'none';
+                                            document.getElementById('loginBtn').style.display = 'inline-block';
+                                            $('#addToCartBtn').hide();
+                                            $('#loginBtna').show();
                                         }
+
+                                        // Handle logout
+                                        $(document).on('click', '#logout-link', function (e) {
+                                            e.preventDefault();
+                                            eraseCookie('accessToken');
+                                            eraseCookie('refreshToken');
+                                            window.location.href = 'loginPage.html';
+                                        });
                                     });
                                 </script>
                             </div>
-                            <div class="hero__search__phone">
-                                <div class="hero__search__phone__icon">
-                                    <i class="fa fa-phone"></i>
-                                </div>
-                                <div class="hero__search__phone__text">
-                                    <h5>+082448677</h5>
-                                    <span>support 24/7 time</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <script>
-            $(document).ready(function () {
-                $.ajax({
-                    url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/AllProductCategories",
-                    method: "GET",
-                    success: function (response) {
-                        var categoryHtml = '';
-    
-                        response.forEach(function (category) {
-                            categoryHtml += `
-                            <li><a href="productPage.html?category=${category.productCategoryName}">${category.productCategoryName}</a></li>`;
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
+                                src="img/logo.png" alt="" style="max-width: 50%;"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6" style="display: flex; justify-content: center;">
+                    <nav class="header__menu">
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex;">
+                            <li style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
+                            <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
+                            <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
+                            <li class="active" style="margin: 0 15px;"><a href="./productPage.html">Product</a></li>
+                            <li style="margin: 0 15px;" id="auth-section-page"></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3" style="align-content: center;">
+                    <div class="header__cart">
+                        <ul>
+                            <li><a href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>All Categories</span>
+                        </div>
+                        <ul id="categories-container">
+                            <!-- Add Categories Here -->
+
+                        </ul>
+                    </div>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $.ajax({
+                            url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/AllProductCategories",
+                            method: "GET",
+                            success: function (response) {
+                                var categoryHtml = '';
+
+                                response.forEach(function (category) {
+                                    categoryHtml += `
+                                        <li><a href="productPage.html?category=${category.productCategoryName}">${category.productCategoryName}</a></li>`;
+                                });
+                                $("#categories-container").html(categoryHtml);
+                            },
+                            error: function (error) {
+                                console.error('Error fetching blog data: ', error);
+                            }
                         });
-                        $("#categories-container").html(categoryHtml);
-                    },
-                    error: function (error) {
-                        console.error('Error fetching blog data: ', error);
-                    }
-                });
-            });
-        </script>
-        <!-- Hero Section End -->
-        <!-- Breadcrumb Section Begin -->
-        <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <div class="breadcrumb__text">
-                            <h2>Product Detail</h2>
-                            <div class="breadcrumb__option">
-                                <a href="./homePage.html">Home</a>
-                                <span>Product</span>
+                    });
+                </script>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form id="searchForm" action="productPage.html">
+                                <input type="text" name="name" placeholder="What do you need?">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                            <script>
+                                document.getElementById('searchForm').addEventListener('submit', function (event) {
+                                    var searchInput = document.querySelector('input[name="name"]').value.trim();
+                                    if (!searchInput) {
+                                        event.preventDefault();
+                                        alert('Please enter a search term.');
+                                    }
+                                });
+                            </script>
+                        </div>
+                        <div class="hero__search__phone">
+                            <div class="hero__search__phone__icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="hero__search__phone__text">
+                                <h5>+082448677</h5>
+                                <span>support 24/7 time</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Breadcrumb Section End -->
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/AllProductCategories",
+                method: "GET",
+                success: function (response) {
+                    var categoryHtml = '';
+
+                    response.forEach(function (category) {
+                        categoryHtml += `
+                            <li><a href="productPage.html?category=${category.productCategoryName}">${category.productCategoryName}</a></li>`;
+                    });
+                    $("#categories-container").html(categoryHtml);
+                },
+                error: function (error) {
+                    console.error('Error fetching blog data: ', error);
+                }
+            });
+        });
+    </script>
+    <!-- Hero Section End -->
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Product Detail</h2>
+                        <div class="breadcrumb__option">
+                            <a href="./homePage.html">Home</a>
+                            <span>Product</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
 
     <!-- Product Details Section Begin -->
     <section class="product-details spad">
@@ -332,9 +341,6 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3 id="productName">Product Name</h3>
-                        <div class="product__details__rating" id="productRating">
-                            <!-- Rating will be generated here -->
-                        </div>
                         <div class="product__details__price" id="productPrice">$0.00</div>
                         <p id="productDescription">Product Description</p>
                         <div class="product__details__quantity">
@@ -344,8 +350,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CART</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <a href="#" class="primary-btn" id="addToCartBtn">ADD TO CART</a>
+                        <a href="loginPage.html" class="primary-btn" id="loginBtn">LOGIN</a>
+
                         <ul>
                             <li><b>Availability</b> <span id="productAvailability">In Stock</span></li>
                             <li><b>Weight</b> <span id="productWeight">0 kg</span></li>
@@ -358,29 +365,114 @@
                         </ul>
                     </div>
                 </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                    aria-selected="true">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                    aria-selected="false">Feedback</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <img src="img/logo.png" alt="" style="max-width: 10%; height: auto;">
+                                        <div>
+                                            <h6 id="shopName" style="margin: 0;">shop Information</h6>
+                                            <div class="product__details__rating" id="productRating">
+                                                <!-- Rating will be generated here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p id="shopAddress">shop Address</p>
+                                    <p id="shopDetail">shop Detail</p>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h6>Feedback Infomation</h6>
+                                    <div class="contact-form spad">
+                                        <div class="container" id="feedbackContainer">
+                                            <!-- <div class="row" >
+                                            </div> -->
+                                        </div>
+                                        <div class="container">
+                                            <form id="feedbackForm" style="margin-top: 20px;">
+                                                <div class="row">
+                                                    <div class="col-lg-12 text-center">
+                                                        <textarea id="feedbackMessage" placeholder="Your message"
+                                                            style="width: 100%; height: 150px; margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+                                                        <button id="sendMessageBtn" type="submit" class="site-btn"
+                                                            style="padding: 10px 20px; background-color: #7fad39; color: #fff; border: none; border-radius: 5px; cursor: pointer;">SEND
+                                                            MESSAGE</button>
+                                                        <a id="loginBtna" href="loginPage.html" class="site-btn"
+                                                            style="display: inline-block; padding: 10px 20px; background-color: #7fad39; color: #fff; text-align: center; text-decoration: none; border: none; border-radius: 5px; cursor: pointer;">LOGIN</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
     <script>
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var product = urlParams.get('product');
+
+        var productId;
+        var shopId;
+
+        function getAccountIdFromToken() {
+            var token = Cookies.get('accessToken');
+            if (!token) {
+                console.error('No access token found');
+                return null;
+            }
+
+            try {
+                var decodedToken = jwt_decode(token);
+                return decodedToken.accountId;
+            } catch (e) {
+                console.error('Error decoding token: ', e);
+                return null;
+            }
+        }
+
         if (product) {
             $.ajax({
                 url: `https://optical-empire-430402-i2.as.r.appspot.com/api/v1/products/name?productName=${product}`,
                 method: 'GET',
                 success: function (response) {
-                    var product = response[0];
+                    var productData = response[0];
 
-                    $('#productImage').attr('src', `img/product/milk-${product.productId}.jpg`);
-                    $('#productName').text(product.productName);
-                    $('#productPrice').text(`$${product.productPrice.toFixed(2)}`);
-                    $('#productDescription').text(product.productInfor);
-                    $('#productAvailability').text(product.productQuatity > 0 ? 'In Stock' : 'Out of Stock');
-                    $('#productWeight').text(`${product.productWeight} kg`);
+                    productId = productData.productId;
+                    shopId = productData.shop.shopId;
+
+                    $('#productImage').attr('src', `img/product/milk-${productData.productId}.jpg`);
+                    $('#productName').text(productData.productName);
+                    $('#shopName').text(productData.shop.shopName);
+                    $('#shopDetail').text(productData.shop.shopDetail);
+                    $('#shopId').text(shopId);
+                    $('#shopAddress').text(productData.shop.shopAddress);
+                    $('#productPrice').text(`$${productData.productPrice.toFixed(2)}`);
+                    $('#productDescription').text(productData.productInfor);
+                    $('#productAvailability').text(productData.productQuatity > 0 ? 'In Stock' : 'Out of Stock');
+                    $('#productWeight').text(`${productData.productWeight} kg`);
 
                     var ratingHtml = '';
-                    var rating = product.productPrice || 0;
+                    var rating = productData.productPrice || 0;
                     for (var i = 1; i <= 5; i++) {
                         if (i <= rating) {
                             ratingHtml += '<i class="fa fa-star"></i>';
@@ -390,8 +482,10 @@
                             ratingHtml += '<i class="fa fa-star-o"></i>';
                         }
                     }
-                    ratingHtml += `<span>(${product.productReviews} reviews)</span>`;
+                    ratingHtml += `<span>(${productData.productReviews} reviews)</span>`;
                     $('#productRating').html(ratingHtml);
+                    fetchFeedbacks(shopId);
+
                 },
                 error: function (error) {
                     console.error('Error fetching product data: ', error);
@@ -400,6 +494,111 @@
         } else {
             console.error("productId parameter is missing in the URL");
         }
+
+
+        function fetchFeedbacks(shopId) {
+            $.ajax({
+                url: `https://optical-empire-430402-i2.as.r.appspot.com/api/v1/Feedback/GetAllFeedback/${shopId}`,
+                method: 'GET',
+                success: function (response) {
+                    var feedbackContainer = $('#feedbackContainer');
+                    feedbackContainer.empty();
+
+                    response.forEach(function (feedback) {
+                        var feedbackHtml = `<div class="col-lg-12">
+                                                <div class="blog__details__author" style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+                                                    <div class="blog__details__author__pic">
+                                                        <img src="img/blog/details/details-author.jpg" alt="" style="width: 90%; height: auto; border-radius: 50%;">
+                                                    </div>
+                                                    <div class="blog__details__author__text">
+                                                        <h6 id="author-name" style="margin: 0; font-size: 15px; line-height: 1.2;">${feedback.email}</h6>
+                                                        <span id="author-role" style="display: block; color: #888; font-size: 14px; line-height: 1.2;">${feedback.content}</span>
+                                                    </div>
+                                                </div>
+                                            </div>`;
+                        feedbackContainer.append(feedbackHtml);
+                    });
+                },
+                error: function (error) {
+                    console.error('Error fetching feedbacks: ', error);
+                }
+            });
+        }
+        $('#feedbackForm').submit(function (e) {
+            e.preventDefault();
+
+            var accountId = getAccountIdFromToken();
+            if (!accountId) {
+                console.error("Account ID is not available");
+                return;
+            }
+
+            var feedbackMessage = $('#feedbackMessage').val().trim();
+            if (!feedbackMessage) {
+                alert('Please enter a message.');
+                return;
+            }
+
+            var feedbackData = {
+                shopId: shopId,
+                accountId: accountId,
+                content: feedbackMessage
+            };
+
+            $.ajax({
+                url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/Feedback/CreateFeedback',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(feedbackData),
+                success: function (response) {
+                    console.log('Feedback sent:', response);
+                    alert('Feedback sent successfully!');
+                    $('#feedbackMessage').val('');
+                },
+                error: function (error) {
+                    console.error('Error sending feedback: ', error);
+                    alert('Failed to send feedback.');
+                }
+            });
+        });
+
+        $('#addToCartBtn').click(function (e) {
+            e.preventDefault();
+
+            if (!productId) {
+                console.error("Product ID is not available");
+                return;
+            }
+
+            var accountId = getAccountIdFromToken();
+            if (!accountId) {
+                console.error("Account ID is not available");
+                return;
+            }
+
+            var cartQuantity = parseInt($('.pro-qty input').val()) || 1;
+
+            var cartData = {
+                productId: productId,
+                accountId: accountId,
+                cartQuantity: cartQuantity
+            };
+
+            $.ajax({
+                url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/Cart/Add',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(cartData),
+                success: function (response) {
+                    console.log('Products added to cart:', response);
+                    alert('Products added to cart successfully!');
+                },
+                error: function (error) {
+                    console.error('Error adding products to cart: ', error);
+                    alert('Failed to add products to cart.');
+                }
+            });
+        });
     </script>
     <!-- Product Details Section End -->
 
@@ -449,9 +648,10 @@
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
                         <div class="footer__widget__social">
-                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
+                                    class="fa fa-facebook"></i></a>
                             <a href="https://www.instagram.com/forever_lively_youth"><i class="fa fa-instagram"></i></a>
-                         </div>
+                        </div>
                     </div>
                 </div>
             </div>

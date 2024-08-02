@@ -40,10 +40,8 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -202,7 +200,6 @@
                         <ul>
                             <li><a href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
                 </div>
             </div>
@@ -371,7 +368,7 @@
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
-                                        <h4>${product.productCategory.productCategoryName}</h4>
+                                        <h4>${product.shop.shopName}</h4>
                                         <h6><a href="./product-details.html?product=${product.productName}">${product.productName}</a></h6>
                                         <h5>$${product.productPrice.toFixed(2)}</h5>
                                     </div>
@@ -429,13 +426,12 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" style="background-image: url(img/product/milk-${product.productId}.jpg);">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            
+                                            <li><a href="./product-details.html?product=${product.productName}"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
-                                        <h4>${product.productCategory.productCategoryName}</h4>
+                                        <h4>${product.shop.shopName}</h4>
                                         <h6><a href="./product-details.html?product=${product.productName}">${product.productName}</a></h6>
                                         <h5>$${product.productPrice.toFixed(2)}</h5>
                                     </div>
@@ -493,13 +489,11 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" style="background-image: url(img/product/milk-${product.productId}.jpg);">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="./product-details.html?product=${product.productName}"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
-                                        <h4>${product.productCategory.productCategoryName}</h4>
+                                        <h4>${product.shop.shopName}</h4>
                                         <h6><a href="./product-details.html?product=${product.productName}">${product.productName}</a></h6>
                                         <h5>$${product.productPrice.toFixed(2)}</h5>
                                     </div>
@@ -540,7 +534,8 @@
             }
         });
     </script>
-
+<!-- <li><a href="#"><i class="fa fa-heart"></i></a></li>
+<li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">

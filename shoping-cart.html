@@ -13,6 +13,7 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
@@ -40,10 +41,8 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -201,7 +200,6 @@
                         <ul>
                             <li><a href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
                 </div>
             </div>
@@ -305,11 +303,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
-                        <table>
+                        <table id="cartTable">
                             <thead>
                                 <tr>
                                     <th>
-                                        <input type="checkbox" name="cart_item" value="item1">
+                                        <input type="checkbox" name="cart_item" value="all">
                                     </th>
                                     <th class="shoping__product">Products</th>
                                     <th>Price</th>
@@ -319,89 +317,61 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="cart_item" value="item1">
-                                    </td>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Shop Name</h5> |
-                                        <h5>Vegetable’s Package</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $55.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $110.00
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="cart_item" value="item1">
-                                    </td>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-2.jpg" alt="">
-                                        <h5>Shop Name<h5> |
-                                        <h5>Fresh Garden Vegetable</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="cart_item" value="item1">
-                                    </td>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-3.jpg" alt="">
-                                        <h5>Shop Name</h5> |
-                                        <h5>Organic Bananas</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
+                                <!-- Rows will be appended here by JavaScript -->
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+            <script>
+                $(document).ready(function() {
+                    $.ajax({
+                        url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/Cart/GetAll/16',
+                        method: 'GET',
+                        success: function(response) {
+                            var productInCarts = response.productInCarts;
+                            var $tbody = $('#cartTable tbody');
+                            var subtotal = 0;
+            
+                            productInCarts.forEach(function(product) {
+                                var total = (product.productPrice * product.cartQuantity).toFixed(2);
+                                subtotal += parseFloat(total);
+            
+                                var $row = $('<tr>').append(
+                                    $('<td>').append(
+                                        $('<input>').attr('type', 'checkbox').attr('name', 'cart_item').attr('value', product.productId)
+                                    ),
+                                    $('<td>').addClass('shoping__cart__item').append(
+                                        $('<img>').attr('src', `img/product/milk-${product.productId}.jpg`).attr('alt', product.productName),
+                                        $('<h5>').text(product.productName)
+                                    ),
+                                    $('<td>').addClass('shoping__cart__price').text(`$${product.productPrice.toFixed(2)}`),
+                                    $('<td>').addClass('shoping__cart__quantity').append(
+                                        $('<div>').addClass('quantity').append(
+                                            $('<div>').addClass('pro-qty').append(
+                                                $('<input>').attr('type', 'text').val(product.cartQuantity)
+                                            )
+                                        )
+                                    ),
+                                    $('<td>').addClass('shoping__cart__total').text(`$${total}`),
+                                    $('<td>').addClass('shoping__cart__item__close').append(
+                                        $('<span>').addClass('fa fa-close')
+                                    )
+                                );
+            
+                                $tbody.append($row);
+                            });
+            
+                            $('#subtotal').text(`$${subtotal.toFixed(2)}`);
+                            $('#total').text(`$${subtotal.toFixed(2)}`);
+                        },
+                        error: function(error) {
+                            console.error('Error fetching cart data: ', error);
+                        }
+                    });
+                });
+            </script>
+            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
@@ -423,8 +393,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Subtotal <span id="subtotal">$0.00</span></li>
+                            <li>Total <span id="total">$0.00</span></li>
                         </ul>
                         <a href="checkout.html" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
