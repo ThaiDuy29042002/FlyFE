@@ -370,7 +370,7 @@
                                         $('<img>').attr('src', `img/product/milk-${product.productId}.jpg`).attr('alt', product.productName).css({ 'width': '50px', 'height': '50px' }),
                                         $('<h5>').text(product.productName)
                                     ),
-                                    $('<td>').addClass('shoping__cart__price').text(`$${product.productPrice.toFixed(2)}`),
+                                    $('<td>').addClass('shoping__cart__price').text(`${product.productPrice.toFixed(2)}vnd`),
                                     $('<td>').addClass('shoping__cart__quantity').append(
                                         $('<div>').addClass('quantity').append(
                                             $('<div>').addClass('pro-qty').append(
@@ -378,7 +378,7 @@
                                             )
                                         )
                                     ),
-                                    $('<td>').addClass('shoping__cart__total').text(`$${total}`),
+                                    $('<td>').addClass('shoping__cart__total').text(`${total}vnd`),
                                     $('<td>').addClass('shoping__cart__item__close').append(
                                         $('<span>').addClass('fa fa-close')
                                     ),
@@ -389,8 +389,8 @@
                                 $tbody.append($row);
                             });
     
-                            $('#subtotal').text(`$${subtotal.toFixed(2)}`);
-                            $('#total').text(`$${subtotal.toFixed(2)}`);
+                            $('#subtotal').text(`${subtotal.toFixed(2)}vnd`);
+                            $('#total').text(`${subtotal.toFixed(2)}vnd`);
                         },
                         error: function (error) {
                             console.error('Error fetching cart data: ', error);
