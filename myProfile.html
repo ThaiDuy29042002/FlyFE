@@ -113,12 +113,12 @@
                                         class="fa fa-instagram"></i></a>
                             </div>
                             <div class="header__top__right__language">
-                                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                                <div>Register</div>
+                                <img src="img/language.png" alt="">
+                                <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="./registerAccount.html">Customer</a></li>
-                                    <li><a href="./registerSellerAccount.html">Seller</a></li>
+                                    <li><a href="#">Viet Nam</a></li>
+                                    <li><a href="#">English</a></li>
                                 </ul>
                             </div>
                             <div class="header__top__right__auth" id="auth-section">
@@ -340,7 +340,7 @@
                         </div>
                     </div>
                 </form>
-
+    
                 <script>
                     function getAccountIdFromToken() {
                         var token = Cookies.get('accessToken');
@@ -348,7 +348,7 @@
                             console.error('No access token found');
                             return null;
                         }
-
+    
                         try {
                             var decodedToken = jwt_decode(token);
                             return decodedToken.accountId;
@@ -357,18 +357,16 @@
                             return null;
                         }
                     }
-
-
+    
                     $(document).ready(function () {
-
                         var accountId = getAccountIdFromToken();
                         console.log('Account ID:', accountId);
-
+    
                         if (!accountId) {
                             console.error('Failed to retrieve accountId');
                             return;
                         }
-
+    
                         $.ajax({
                             url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/user/' + accountId + '?accountId=' + accountId,
                             method: 'GET',
@@ -382,8 +380,29 @@
                                 console.log('Error fetching user data: ', userError);
                             }
                         });
-
-
+    
+                        $('#fetchData').on('click', function () {
+                            var updatedUser = {
+                                accountId: accountId,
+                                userName: $('#username').val(),
+                                phone: $('#phone').val(),
+                                address: $('#address').val()
+                            };
+                            console.log('Updated User:', updatedUser);
+    
+                            $.ajax({
+                                url: 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/UCustomer',
+                                method: 'PUT',
+                                contentType: 'application/json',
+                                data: JSON.stringify(updatedUser),
+                                success: function (updateResponse) {
+                                    console.log('User updated successfully:', updateResponse);
+                                },
+                                error: function (updateError) {
+                                    console.error('Error updating user data: ', updateError);
+                                }
+                            });
+                        });
                     });
                 </script>
             </div>
