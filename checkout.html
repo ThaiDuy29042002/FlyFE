@@ -11,8 +11,10 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
@@ -36,14 +38,13 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+            <a href="#" style="display: flex; justify-content: center;"><img src="img/logo.png" alt=""
+                    style="max-width: 50%;"></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -61,18 +62,18 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active" style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
-                            <!-- <li><a href="./shop-grid.html">Shop</a></li> -->
-                            <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
-                            <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
-                            <li style="margin: 0 15px;"><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown" >
-                                    <li><a href="./myProfile.html">My Profile</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./historybooking.html">History Booking</a></li>
-                                    <li><a href="./my-blogs.html">My Blog</a></li>
-                                </ul>
-                            </li>
+                <li style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
+                <!-- <li><a href="./shop-grid.html">Shop</a></li> -->
+                <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
+                <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
+                <li class="active" style="margin: 0 15px;"><a href="#">Pages</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="./myProfile.html">My Profile</a></li>
+                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                        <li><a href="./historybooking.html">History Booking</a></li>
+                        <li><a href="./my-blogs.html">My Blog</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -83,9 +84,8 @@
             <a href="#"><i class="fa fa-pinterest-p"></i></a>
         </div>
         <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
-                <a href="./registerShop.html"><li>Register Shop</li></a>           
+            <ul id="auth-registerShop-section">
+
             </ul>
         </div>
     </div>
@@ -98,17 +98,18 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
-                                <a href="./registerShop.html"><li>Register Shop</li></a>           
+                            <ul id="auth-registershop-section">
+
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                <a href="https://www.facebook.com/profile.php?id=61559967236538"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
+                                        class="fa fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/forever_lively_youth"><i
+                                        class="fa fa-instagram"></i></a>
                             </div>
                             <div class="header__top__right__language">
                                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
@@ -119,8 +120,59 @@
                                     <li><a href="./registerSellerAccount.html">Seller</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="./loginPage.html"><i class="fa fa-user"></i> Login</a>
+                            <div class="header__top__right__auth" id="auth-section">
+                                <script>
+                                    $(document).ready(function () {
+                                        function getCookie(name) {
+                                            var nameEQ = name + "=";
+                                            var ca = document.cookie.split(';');
+                                            for (var i = 0; i < ca.length; i++) {
+                                                var c = ca[i];
+                                                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                                                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                                            }
+                                            return null;
+                                        }
+
+                                        function eraseCookie(name) {
+                                            document.cookie = name + '=; Max-Age=-99999999;';
+                                        }
+
+                                        var accessToken = getCookie('accessToken');
+
+                                        if (accessToken) {
+                                            $('#auth-section').html('<a href="#" id="logout-link"><i class="fa fa-user"></i> Logout</a>');
+                                            $('#auth-section-page').html(`
+                                               <a href="#">Pages</a>
+                                                    <ul class="header__menu__dropdown">
+                                                        <li><a href="./myProfile.html">My Profile</a></li>
+                                                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                                        <li><a href="./historybooking.html">History Booking</a></li>
+                                                        <li><a href="./my-blogs.html">My Blog</a></li>
+                                                    </ul>
+                                            `);
+                                            $('#auth-registershop-section').html(`
+                                                <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
+                                                <a href="./registerShop.html">
+                                                <li>Register Shop</li>
+                                                </a>
+                                            `);
+                                        } else {
+                                            $('#auth-section').html('<a href="./loginPage.html"><i class="fa fa-user"></i> Login</a>');
+                                            $('#auth-registershop-section').html(`
+                                                <li><i class="fa fa-envelope"></i> FLY@gmail.com</li>
+                                            `);
+                                        }
+
+                                        // Handle logout
+                                        $(document).on('click', '#logout-link', function (e) {
+                                            e.preventDefault();
+                                            eraseCookie('accessToken');
+                                            eraseCookie('refreshToken');
+                                            window.location.href = 'loginPage.html';
+                                        });
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -131,7 +183,8 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./HomePage.html" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+                        <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
+                                src="img/logo.png" alt="" style="max-width: 50%;"></a>
                     </div>
                 </div>
                 <div class="col-lg-6" style="display: flex; justify-content: center;">
@@ -140,25 +193,16 @@
                             <li style="margin: 0 15px;"><a href="./HomePage.html">Home</a></li>
                             <li style="margin: 0 15px;"><a href="./blog.html">Blog</a></li>
                             <li style="margin: 0 15px;"><a href="./contact.html">Contact</a></li>
-                            <li style="margin: 0 15px;"><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./myProfile.html">My Profile</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./historybooking.html">History Booking</a></li>
-                                    <li><a href="./my-blogs.html">My Blog</a></li>
-                                </ul>
-                            </li>
-                            <li class="active" style="margin: 0 15px;"><a href="./productPage.html">Product</a></li>
+                            <li style="margin: 0 15px;"><a href="./productPage.html">Product</a></li>
+                            <li class="active" style="margin: 0 15px;" id="auth-section-page"></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3" style="align-content: center;">
                     <div class="header__cart">
                         <ul>
-                            <!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> -->
                             <li><a href="./shoping-cart.html"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
                 </div>
             </div>
@@ -179,29 +223,55 @@
                             <i class="fa fa-bars"></i>
                             <span>All Categories</span>
                         </div>
-                        <ul>
-                            <li><a href="#">Nutritional food</a></li>
-                            <li><a href="#">Healthcare product</a></li>
-                            <li><a href="#">Personal care products</a></li>
-                            <li><a href="#">Household appliances</a></li>
-                            <li><a href="#">Entertainment and spirit</a></li>
+                        <ul id="categories-container">
+                            <!-- Add Categories Here -->
+
                         </ul>
                     </div>
                 </div>
+                <script>
+                    $(document).ready(function () {
+                        $.ajax({
+                            url: "https://optical-empire-430402-i2.as.r.appspot.com/api/v1/AllProductCategories",
+                            method: "GET",
+                            success: function (response) {
+                                var categoryHtml = '';
+
+                                response.forEach(function (category) {
+                                    categoryHtml += `
+                                    <li><a href="productPage.html?category=${category.productCategoryName}">${category.productCategoryName}</a></li>`;
+                                });
+                                $("#categories-container").html(categoryHtml);
+                            },
+                            error: function (error) {
+                                console.error('Error fetching blog data: ', error);
+                            }
+                        });
+                    });
+                </script>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <input type="text" placeholder="What do yo u need?">
+                            <form id="searchForm" action="productPage.html">
+                                <input type="text" name="name" placeholder="What do you need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
+                            <script>
+                                document.getElementById('searchForm').addEventListener('submit', function (event) {
+                                    var searchInput = document.querySelector('input[name="name"]').value.trim();
+                                    if (!searchInput) {
+                                        event.preventDefault();
+                                        alert('Please enter a search term.');
+                                    }
+                                });
+                            </script>
                         </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>+082448677</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>
@@ -210,7 +280,7 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Contact Section End -->
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
@@ -231,138 +301,113 @@
     <!-- Breadcrumb Section End -->
 
     <!-- Checkout Section Begin -->
+    <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
-                    </h6>
-                </div>
-            </div>
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="#">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-6">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Fist Name<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Last Name<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Country<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add">
-                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Town/City<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Country/State<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Postcode / ZIP<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Phone<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Email<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                            </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="checkout__order">
+                            <h4>Your Order</h4>
+                            <div class="checkout__order__products">Products <span>Total</span></div>
+                            <ul id="order-items-list">
+                                <!-- Order items will be appended here -->
+                            </ul>
+                            <div class="checkout__order__subtotal">Subtotal <span id="order-subtotal">$0.00</span></div>
+                            <div class="checkout__order__total">Total <span id="order-total">$0.00</span></div>
                             <div class="checkout__input__checkbox">
-                                <label for="acc">
-                                    Create an account?
-                                    <input type="checkbox" id="acc">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <p>Create an account by entering the information below. If you are a returning customer
-                                please login at the top of the page</p>
-                            <div class="checkout__input">
-                                <p>Account Password<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="diff-acc">
-                                    Ship to a different address?
-                                    <input type="checkbox" id="diff-acc">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Order notes<span>*</span></p>
-                                <input type="text"
-                                    placeholder="Notes about your order, e.g. special notes for delivery.">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="checkout__order">
-                                <h4>Your Order</h4>
-                                <div class="checkout__order__products">Products <span>Total</span></div>
-                                <ul>
-                                    <li>Vegetable’s Package <span>$75.99</span></li>
-                                    <li>Fresh Vegetable <span>$151.99</span></li>
-                                    <li>Organic Bananas <span>$53.99</span></li>
-                                </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="acc-or">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-or">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                <div id="qr-codes" class="qr-codes">
+                                    <img src="\img\Payment1.png" alt="QR Code 1" style="width: 200px; height: auto;">
+                                    <img src="\img\payment2.jpg" alt="QR Code 2" style="width: 200px; height: auto;">
+                                    <p>Note: THANH TOAN DON HANG CUA + HO VA TEN + SDT</p>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                                    ut labore et dolore magna aliqua.</p>
-                                <div class="checkout__input__checkbox">
-                                    <label for="payment">
-                                        Check Payment
-                                        <input type="checkbox" id="payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input type="checkbox" id="paypal">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <button type="submit" class="site-btn">PLACE ORDER</button>
                             </div>
+                            <button type="submit" class="site-btn">PLACE ORDER</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
     <!-- Checkout Section End -->
+    <style>
+        .qr-codes {
+            margin-top: 20px;
+            text-align: center;
+        }
+    
+        .qr-codes img {
+            width: 150px; 
+            height: 150px; 
+            margin: 0 10px;
+        }
+    </style>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
+        
+
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        const orderId = getQueryParameter('orderId');
+        if (!orderId) {
+            console.error('No orderId found in URL');
+            return;
+        }
+
+        const apiUrl = `https://optical-empire-430402-i2.as.r.appspot.com/api/v1/getOrderById/${orderId}`;    
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data retrieved:', data);
+                displayOrderDetails(data[0]);  
+            })
+            .catch(error => {
+                console.error('An error occurred while retrieving the order:', error);
+            });
+    
+        function displayOrderDetails(order) {
+            const orderItemsList = document.getElementById("order-items-list");
+            orderItemsList.innerHTML = "";
+    
+            console.log('Order details:', order);
+    
+            if (!order || !order.orderDetails || !Array.isArray(order.orderDetails)) {
+                console.error('Invalid order details format:', order?.orderDetails);
+                return;
+            }
+    
+            order.orderDetails.forEach(detail => {
+                const listItem = document.createElement("li");
+                const productName = detail.product?.productName || 'Unknown Product';
+                const productInfor = detail.product?.productInfor || 'No information';
+                const shopName = detail.shop?.shopName || 'Unknown Shop';
+                const shopAddress = detail.shop?.shopAddress || 'No address';
+                listItem.innerHTML = `
+                    ${productName} - ${productInfor} (${detail.orderQuantity} x ${detail.productPrice.toFixed(2)} vnd) 
+                    <span>${(detail.productPrice * detail.orderQuantity).toFixed(2)} vnd</span>
+                    <br>
+                    Shop: ${shopName}, ${shopAddress}
+                `;
+                orderItemsList.appendChild(listItem);
+            });
+    
+            const subtotal = order.orderDetails.reduce((sum, detail) => sum + (detail.productPrice * detail.orderQuantity), 0);
+            document.getElementById("order-subtotal").innerText = `${subtotal.toFixed(2)} vnd`;
+            document.getElementById("order-total").innerText = `${(order.totalPrice).toFixed(2)} vnd`;
+        }
+    });
+    </script>
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
@@ -370,7 +415,8 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
+                                    src="img/logo.png" alt="" style="max-width: 50%;"></a>
                         </div>
                         <ul>
                             <li>Address: Ho Chi Minh City</li>
@@ -409,7 +455,8 @@
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
                         <div class="footer__widget__social">
-                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
+                                    class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
@@ -439,7 +486,7 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
- 
+
 
 </body>
 

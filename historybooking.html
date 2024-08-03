@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/feedback.css" type="text/css">
 
 </head>
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -84,7 +85,7 @@
             <a href="#"><i class="fa fa-pinterest-p"></i></a>
         </div>
         <div class="humberger__menu__contact">
-            <ul  id="auth-registerShop-section">
+            <ul id="auth-registerShop-section">
 
             </ul>
         </div>
@@ -99,7 +100,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul id="auth-registershop-section">
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -108,7 +109,8 @@
                             <div class="header__top__right__social">
                                 <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
                                         class="fa fa-facebook"></i></a>
-                                <a href="https://www.instagram.com/forever_lively_youth"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.instagram.com/forever_lively_youth"><i
+                                        class="fa fa-instagram"></i></a>
                             </div>
                             <div class="header__top__right__language">
                                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
@@ -234,7 +236,7 @@
                             method: "GET",
                             success: function (response) {
                                 var categoryHtml = '';
-            
+
                                 response.forEach(function (category) {
                                     categoryHtml += `
                                     <li><a href="productPage.html?category=${category.productCategoryName}">${category.productCategoryName}</a></li>`;
@@ -307,9 +309,9 @@
                         <table id="orderHistoryTable">
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">Products</th>
+                                    <th class="shoping__product">ShopName</th>
                                     <th>Date</th>
-                                    <th>Quantity</th>
+                                    <th>ProductName & Quantity</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
@@ -324,7 +326,7 @@
                                 console.error('No access token found');
                                 return null;
                             }
-            
+
                             try {
                                 var decodedToken = jwt_decode(token);
                                 console.log('Decoded Token: ', decodedToken);
@@ -334,17 +336,34 @@
                                 return null;
                             }
                         }
-            
+
                         $(document).ready(function () {
+                            function getAccountIdFromToken() {
+                                var token = Cookies.get('accessToken');
+                                if (!token) {
+                                    console.error('No access token found');
+                                    return null;
+                                }
+
+                                try {
+                                    var decodedToken = jwt_decode(token);
+                                    console.log('Decoded Token: ', decodedToken);
+                                    return decodedToken.accountId;
+                                } catch (e) {
+                                    console.error('Error decoding token: ', e);
+                                    return null;
+                                }
+                            }
+
                             var accountId = getAccountIdFromToken();
                             if (!accountId) {
                                 console.error('Failed to retrieve accountId');
                                 return;
                             }
-            
+
                             var apiUrl = 'https://optical-empire-430402-i2.as.r.appspot.com/api/v1/myHistoryOrrder/' + accountId;
                             console.log('API URL: ', apiUrl);
-            
+
                             $.ajax({
                                 url: apiUrl,
                                 method: 'GET',
@@ -352,22 +371,19 @@
                                     console.log('API Response: ', response);
                                     var $tbody = $('#orderHistoryTable tbody');
                                     $tbody.empty();
-            
+
                                     response.forEach(function (order) {
+                                        var shopNames = [...new Set(order.orderDetails.map(detail => detail.shop.shopName))].join('<br>');
+
+                                        var productDetails = order.orderDetails.map(detail => `${detail.product.productName} (x${detail.orderQuantity})`).join('<br>');
+
                                         var $row = $('<tr>').append(
-                                            $('<td>').addClass('shoping__cart__item').append(
-                                                $('<h5>').text(order.account.userName),
-                                                $('<h5>').text(order.orderId)
-                                            ),
+                                            $('<td>').addClass('shoping__cart__item').html(shopNames),
                                             $('<td>').addClass('shoping__cart__date').text(new Date(order.orderDate).toLocaleDateString()),
-                                            $('<td>').addClass('shoping__cart__quantity').append(
-                                                $('<div>').addClass('quantity').append(
-                                                    $('<p>').text("N/A")
-                                                )
-                                            ),
-                                            $('<td>').addClass('shoping__cart__total').text(`$${order.totalPrice.toFixed(2)}`)
+                                            $('<td>').addClass('shoping__cart__quantity').html(productDetails),
+                                            $('<td>').addClass('shoping__cart__total').text(`${order.totalPrice.toFixed(2)} vnd`)
                                         );
-            
+
                                         $tbody.append($row);
                                     });
                                 },
@@ -390,7 +406,8 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img src="img/logo.png" alt="" style="max-width: 50%;"></a>
+                            <a href="./HomePage.html" style="display: flex; justify-content: center;"><img
+                                    src="img/logo.png" alt="" style="max-width: 50%;"></a>
                         </div>
                         <ul>
                             <li>Address: Ho Chi Minh City</li>
@@ -429,9 +446,10 @@
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
                         <div class="footer__widget__social">
-                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61559967236538"><i
+                                    class="fa fa-facebook"></i></a>
                             <a href="https://www.instagram.com/forever_lively_youth"><i class="fa fa-instagram"></i></a>
-                         </div>
+                        </div>
                     </div>
                 </div>
             </div>

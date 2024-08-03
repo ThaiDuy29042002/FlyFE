@@ -432,7 +432,8 @@
                             data: JSON.stringify(orderData),
                             success: function (response) {
                                 console.log('Order created successfully: ', response);
-                                window.location.href = 'HomePage.html'; // Redirect to checkout page after successful order creation
+                                var orderId = response.orderId; 
+                                window.location.href = `checkout.html?orderId=${orderId}`; 
                             },
                             error: function (error) {
                                 console.error('Error creating order: ', error);
